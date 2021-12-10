@@ -1,6 +1,4 @@
-package app;
-
-import app.entity.Singer;
+package app.entity;
 
 import java.io.Serializable;
 import java.util.List;

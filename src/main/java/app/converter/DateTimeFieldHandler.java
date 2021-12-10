@@ -1,4 +1,4 @@
-package app;
+package app.converter;
 
 import org.exolab.castor.mapping.GeneralizedFieldHandler;
 import org.exolab.castor.mapping.ValidityException;

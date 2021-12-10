@@ -1,7 +1,5 @@
-package app;
+package app.configuration;
 
-import app.configuration.DataServiceConfig;
-import app.service.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {

@@ -11,6 +11,8 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  singerService.findAll() - http://localhost:8080/SpringREST_war_exploded/singer/listdata
+    <br />
+  singerService.findById(id) - http://localhost:8080/SpringREST_war_exploded/singer/{id}
   </body>
 </html>

@@ -1,6 +1,7 @@
-package app;
+package app.controller;
 
 import app.entity.Singer;
+import app.entity.Singers;
 import app.service.SingerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
