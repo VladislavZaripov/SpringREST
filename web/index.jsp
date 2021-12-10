@@ -11,8 +11,17 @@
     <title>$Title$</title>
   </head>
   <body>
-  singerService.findAll() - http://localhost:8080/SpringREST_war_exploded/singer/listdata
+  singerService.findAll() - http://localhost:8080/singer/listdata
     <br />
-  singerService.findById(id) - http://localhost:8080/SpringREST_war_exploded/singer/{id}
+  terminal json: curl -v -H "Accept: application/json" http://localhost:8080/singer/listdata
+    <br />
+  terminal xml: curl -v -H "Accept: application/xml" http://localhost:8080/singer/listdata
+  <br />
+    <br />
+  singerService.findById(id) - http://localhost:8080/singer/{id}
+  <br />
+  terminal json: curl -v -H "Accept: application/json" http://localhost:8080/singer/{id}
+  <br />
+  terminal xml: curl -v -H "Accept: application/xml" http://localhost:8080/singer/{id}
   </body>
 </html>
