@@ -1,7 +1,13 @@
 package app.configuration;
 
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.Credentials;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -22,16 +28,37 @@ public class RestClientConfig {
     @Autowired
     ApplicationContext ctx;
 
+    // security part
     @Bean
-    public HttpComponentsClientHttpRequestFactory httpRequestFactory(){
-        HttpComponentsClientHttpRequestFactory httpRequestFactory = new HttpComponentsClientHttpRequestFactory();
-        HttpClient httpClient = HttpClientBuilder.create().build();
-        httpRequestFactory.setHttpClient(httpClient);
-        return  httpRequestFactory;
+    Credentials credentials() {
+        return new UsernamePasswordCredentials("Vlad", "Vlad");
+    }
+
+    // security part
+    @Bean
+    CredentialsProvider provider() {
+        BasicCredentialsProvider provider = new BasicCredentialsProvider();
+        provider.setCredentials(AuthScope.ANY, credentials());
+        return provider;
     }
 
     @Bean
-    public RestTemplate restTemplate(){
+    public HttpComponentsClientHttpRequestFactory httpRequestFactory() {
+//        HttpComponentsClientHttpRequestFactory httpRequestFactory = new HttpComponentsClientHttpRequestFactory();
+//        HttpClient httpClient = HttpClientBuilder.create().build();
+//        httpRequestFactory.setHttpClient(httpClient);
+//        return  httpRequestFactory;
+
+        // security part
+        CloseableHttpClient client = HttpClients
+                .custom()
+                .setDefaultCredentialsProvider(provider())
+                .build();
+        return  new HttpComponentsClientHttpRequestFactory(client);
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
         RestTemplate restTemplate = new RestTemplate(httpRequestFactory());
         List<HttpMessageConverter<?>> mcvs = new ArrayList<>();
         mcvs.add(singerMessageConverter());
