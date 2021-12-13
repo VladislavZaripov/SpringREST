@@ -7,21 +7,43 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title>$Title$</title>
-  </head>
-  <body>
-  singerService.findAll() - http://localhost:8080/singer/listdata
-    <br />
-  terminal json: curl -v -H "Accept: application/json" http://localhost:8080/singer/listdata
-    <br />
-  terminal xml: curl -v -H "Accept: application/xml" http://localhost:8080/singer/listdata
-  <br />
-    <br />
-  singerService.findById(id) - http://localhost:8080/singer/{id}
-  <br />
-  terminal json: curl -v -H "Accept: application/json" http://localhost:8080/singer/{id}
-  <br />
-  terminal xml: curl -v -H "Accept: application/xml" http://localhost:8080/singer/{id}
-  </body>
+</head>
+<body>
+ACCESS IS DENIED
+<br/>
+singerService.findAll() - http://localhost:8080/rest/singer/listdata
+<br/>
+terminal json: curl -v -H "Accept: application/json" http://localhost:8080/rest/singer/listdata
+<br/>
+terminal xml: curl -v -H "Accept: application/xml" http://localhost:8080/rest/singer/listdata
+<br/>
+<br/>
+ACCESS IS PERMITTED
+<br/>
+singerService.findById(id) - http://localhost:8080/rest/singer/1
+<br/>
+singerService.findById(id) - http://localhost:8080/rest/singer/2
+<br/>
+singerService.findById(id) - http://localhost:8080/rest/singer/3
+<br/>
+terminal json: curl -v -H "Accept: application/json" http://localhost:8080/rest/singer/1
+<br/>
+terminal json: curl -v -H "Accept: application/json" http://localhost:8080/rest/singer/2
+<br/>
+terminal json: curl -v -H "Accept: application/json" http://localhost:8080/rest/singer/3
+<br/>
+terminal xml: curl -v -H "Accept: application/xml" http://localhost:8080/rest/singer/1
+<br/>
+terminal xml: curl -v -H "Accept: application/xml" http://localhost:8080/rest/singer/2
+<br/>
+terminal xml: curl -v -H "Accept: application/xml" http://localhost:8080/rest/singer/3
+<br/>
+<br/>
+ACCESS IS PERMITTED in RestClientTest
+<br/>
+singerService.findAll() - http://localhost:8080/rest/singer/listdata
+<br/>
+</body>
 </html>

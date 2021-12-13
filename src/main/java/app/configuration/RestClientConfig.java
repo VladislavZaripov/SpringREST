@@ -28,13 +28,11 @@ public class RestClientConfig {
     @Autowired
     ApplicationContext ctx;
 
-    // security part
     @Bean
     Credentials credentials() {
         return new UsernamePasswordCredentials("Vlad", "Vlad");
     }
 
-    // security part
     @Bean
     CredentialsProvider provider() {
         BasicCredentialsProvider provider = new BasicCredentialsProvider();
@@ -49,7 +47,6 @@ public class RestClientConfig {
 //        httpRequestFactory.setHttpClient(httpClient);
 //        return  httpRequestFactory;
 
-        // security part
         CloseableHttpClient client = HttpClients
                 .custom()
                 .setDefaultCredentialsProvider(provider())

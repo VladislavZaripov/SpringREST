@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
         try {
             auth.inMemoryAuthentication()
                     .withUser("Vlad")
-                    .password("Vlad")
+                    .password("{noop}Vlad")
                     .roles("REMOTE");
         } catch (Exception e) {
             logger.error("Could not configure authentication!", e);
@@ -36,8 +36,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .antMatchers("/rest/**")
+                .antMatchers("/*").permitAll()
+                .antMatchers("/rest/singer/1").permitAll()
+                .antMatchers("/rest/singer/2").permitAll()
+                .antMatchers("/rest/singer/3").permitAll()
+                .antMatchers("/rest/singer/listdata")
                 .hasRole("REMOTE")
                 .anyRequest()
                 .authenticated()
@@ -49,17 +52,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .csrf().disable();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -21,7 +21,7 @@ public class RestClientTest {
 
     private static Logger logger = LoggerFactory.getLogger(RestClientTest.class);
 
-    private static final String URL_GET_ALL_SINGERS = "http://localhost:8080/singer/listdata";
+    private static final String URL_GET_ALL_SINGERS = "http://localhost:8080/rest/singer/listdata";
 
     @Autowired
     RestTemplate restTemplate;
