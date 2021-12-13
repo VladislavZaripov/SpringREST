@@ -10,7 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+//@Controller
+@RestController
 @RequestMapping(value = "/singer")
 public class SingerController {
 
@@ -20,20 +21,25 @@ public class SingerController {
     SingerService singerService;
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/listdata", method = RequestMethod.GET)
-    @ResponseBody
+//    @RequestMapping(value = "/listdata", method = RequestMethod.GET)
+//    @ResponseBody
+    @GetMapping(value = "/listdata")
     public Singers listDate(){
         return new Singers(singerService.findAll());
     }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.GET)
-    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+//    @RequestMapping(value="/{id}", method=RequestMethod.GET)
+//    @ResponseBody
+    @GetMapping(value = "/{id}")
     public Singer findSingerById(@PathVariable Long id) {
         return singerService.findById(id);
     }
 
-    @RequestMapping(value="/", method=RequestMethod.POST)
-    @ResponseBody
+    @ResponseStatus(HttpStatus.CREATED)
+//    @RequestMapping(value="/", method=RequestMethod.POST)
+//    @ResponseBody
+    @PostMapping(value = "/")
     public Singer create(@RequestBody Singer singer) {
         logger.info("Creating singer: " + singer);
         singerService.save(singer);
@@ -41,16 +47,20 @@ public class SingerController {
         return singer;
     }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
-    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+//    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
+//    @ResponseBody
+    @PutMapping(value = "/{id}")
     public void update(@RequestBody Singer singer, @PathVariable Long id) {
         logger.info("Updating singer: " + singer);
         singerService.save(singer);
         logger.info("Singer updated successfully with info: " + singer);
     }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-    @ResponseBody
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+//    @ResponseBody
+    @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable Long id) {
         logger.info("Deleting singer with id: " + id);
         Singer singer = singerService.findById(id);
